@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customizing Slidify</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Customizing Slidify">
+  <meta name="author" content="Miguel Vázquez-Prada Baillet">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="./frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="./frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="./frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="./highlighters/highlight.js/css/zenburn.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/slidify-reveal.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="./widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script> 
+  <script data-main="./frameworks/io2012/js/slides" 
+    src="./frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Customizing Slidify</h1>
+    <h2></h2>
+    <p>Miguel Vázquez-Prada Baillet<br/>Center for Epidemiology and Screening, Copenhaguen University</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>CUSTOMIZE SLIDIFY</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>HTML CUSTOMIZED PRESENTATIONS MADE EASY</h3>
+
+<p><small> Created by <a href="http://www.gatodante.com">Miguel Vázquez-Prada</a> / <a href="miguelvb@yahoo.com">@miguelvb</a> </small></p>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  </article>
+  <!-- Presenter Notes -->
+  <aside class="note" id="">
+    <section>
+      
+    </section>
+  </aside>
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>INTRO</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://slidify.org"><code>slidify</code></a> is an extremly powerful tool to convert any <strong>Rmd</strong> (R markdown) document to a beautiful and custom html5 presentation. </p>
+
+<p>From Slides to a complete website, many different documents can be rendered changing only a few lines. </p>
+
+<p>Have a tour into some examples following this link: <a href="http://ramnathv.github.io/slidifyExamples/">slidify examples</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Install slidify</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To install slidify you will need to install in <strong>R</strong> , <code>slidify</code> and <code>slidifyLibraries</code> packages from github (the <em>dev</em> branch).</p>
+
+<p>To do that you need to install <code>devtools</code> package to be able to run these commands: </p>
+
+<pre><code>require(devtools)
+install_github(&quot;slidify&quot;,&quot;ramnathv&quot;,&quot;dev&quot;)
+install_github(&quot;slidifyLibraries&quot;,&quot;ramnathv&quot;,&quot;dev&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Run Slidify</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Open a new project in RStudio, or create a new directory where you will have your files.<br>
+Set the working directory in that folder:</p>
+
+<pre><code>setwd(&quot;path/to/folder&quot;)
+</code></pre>
+
+<p>Now run the command <strong>author(</strong>&quot;myname&quot;<strong>)</strong> which will create a directory called &quot;myname&quot;: </p>
+
+<pre><code>author(&quot;myname&quot;)
+</code></pre>
+
+<p><small> You can download the examples from <a href="http://ramnathv.github.io/slidifyExamples/">slidify examples</a> to explore the code and get ideas. </small> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>The Begining</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The file <strong>index.Rmd</strong> will be created and in it you will have the <strong>YAML</strong> configuration, which looks like: </p>
+
+<pre><code>---
+title       : 
+subtitle    : 
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+---
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>The Begining</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>These first lines are  <strong>YAML</strong> code to configure and pass some information to slidify. 
+To begin to write your document you can fill this lines:  </p>
+
+<pre><code>title : 
+subtitle: 
+author: 
+</code></pre>
+
+<p>To make a slide for you document you can enter this text after that YAML code: </p>
+
+<pre><code>## The first Slide Title 
+The slide content 
+</code></pre>
+
+<p>To create another slide, you only have to write : </p>
+
+<pre><code>--- 
+</code></pre>
+
+<p>as that is the slides &quot;separator&quot;. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Basic Slide Structure</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A slide has a <strong>title</strong> and a <strong>content</strong>
+They are created by slidify from this markdown code: </p>
+
+<pre><code>--- 
+## side title 
+slide content
+</code></pre>
+
+<p>For example the next slide is created with this code: </p>
+
+<pre><code>---
+## A slide example 
+This is an example of content. 
+1. simple 
+2. short 
+</code></pre>
+
+<p>go to the next slide to see the result -&gt;</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>A slide example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This is an example of content. </p>
+
+<ol>
+<li>simple </li>
+<li>short </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='CUSTOMIZE SLIDIFY'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='INTRO'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Install slidify'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Run Slidify'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='The Begining'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='The Begining'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Basic Slide Structure'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='A slide example'>
+         8
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="./highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
