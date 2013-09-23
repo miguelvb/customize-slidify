@@ -1,0 +1,38 @@
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+  color: #f4f2;
+}
+
+
+/* Fonts and Spacing */
+article p, article li, article li.build, section p, section li{
+  font-size:18px;
+  line-height: 1.2em;
+}
+
+slide:not(.segue) h2{
+  font-size: 48px;
+}
+
+pre {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+
+prehtml {
+  font-family: 'Inconsolata', 'Courier New', monospace;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 10px 0 10px 60px;
+  letter-spacing: -1px;
+  margin-bottom: 0px;
+}
+
+small { 
+  font-size:15px;
+}

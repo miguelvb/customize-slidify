@@ -1,0 +1,26 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  {{> head }}
+  {{{ page.assets.css }}} 
+
+  {{{ page.assets.jshead }}}
+
+</head>
+<body>
+  <slides>
+  
+    {{> titleslide }}
+    
+    <!-- SLIDES -->
+    {{{ page.content }}}
+  </slides>
+</body>
+  <!-- Load Javascripts for Widgets -->
+  {{{ page.assets.js }}}
+  {{> javascripts }}
+</html>
+
+

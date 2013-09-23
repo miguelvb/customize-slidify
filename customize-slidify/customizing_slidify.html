@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/zenburn.css" />
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/slidify-reveal.css"></link>
+<link rel=stylesheet href="./assets/css/styleio2012.css"></link>
 
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
@@ -41,27 +42,18 @@
     
 
     <!-- SLIDES -->
-    <slide class="" id="slide-1" style="background:;">
+    <slide class="title-slide segue nobackground">
   <hgroup>
-    <h2>CUSTOMIZE SLIDIFY</h2>
+    <h1><h2>CUSTOMIZE SLIDIFY</h2></h1>
+    <p>Miguel Vázquez-Prada Baillet<br/>Center for Epidemiology and Screening, Copenhaguen University</p>
   </hgroup>
-  <article data-timings="">
-    <h3>HTML CUSTOMIZED PRESENTATIONS MADE EASY</h3>
-
-<p><small> Created by <a href="http://www.gatodante.com">Miguel Vázquez-Prada</a> / <a href="miguelvb@yahoo.com">@miguelvb</a> </small></p>
+ <article data-timings="">
+    <h1>HTML CUSTOMIZED PRESENTATIONS MADE EASY</h1>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
   </article>
-  <!-- Presenter Notes -->
-  <aside class="note" id="">
-    <section>
-      <p>A note for me... </p>
-
-    </section>
-  </aside>
 </slide>
-
 <slide class="" id="slide-2" style="background:;">
   <hgroup>
     <h2>INTRO</h2>
@@ -254,17 +246,359 @@ In a slidify document (which is an Rmd document) there are 3 main types of code:
 
 <p>To customize slidify, it is important to understand how the code is transformed into html. </p>
 
-<h2>The main structure</h2>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<p>A slidify document is a <strong>page</strong> that contains <strong>slides</strong></p>
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>The main structure</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A slidify document is a <strong>page</strong> that contains <strong>slides</strong></p>
 
-<p>The page is all the document, and each slide is those pieces separated by <strong>---</strong></p>
+<p>The page corresponds to all the document, and each slide is those pieces separated by <strong>---</strong> </p>
+
+<p>pages and slides have <strong>elements</strong> that are used to parse the code into html. </p>
+
+<p>The beginning of our Rmd document (YAML code) is used to assign elements to the page: </p>
+
+<pre><code>---
+author : John TwoLegs
+...
+...
+---
+</code></pre>
+
+<p>is going to assign the <strong>page element</strong> &quot;author&quot; the value &quot;John TwoLegs&quot;.
+In general, elements and their values are written as pairs : </p>
+
+<pre><code>element:value 
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="backdrop"></slide>
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>The main structure</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>slide elements are assigned with this code : </p>
+
+<pre><code>--- &amp;layout .class #id element:value
+## slide header
+
+slide content
+
+*** =blockname
+---
+</code></pre>
+
+<p><code>layout</code> is the layout (template) used to render the slide.<br>
+<code>class</code> is the slide&#39;s class for the slide.<br>
+<code>id</code> is the slide&#39;s id.<br>
+after the &quot;---&quot; if we type <code>##</code> the text following that will be the <code>header</code> element.<br>
+The text after the header will be the value of the <code>content</code> element.<br>
+If we want to specify a <code>block</code> in the slide, we do it by typing <code>*** =blockname</code>   </p>
+
+<p>It is always possible to use the rule of typing:  <code>element:value</code>. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Parsing code</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>slidify</code> will read the code we type, defining page and slide elements and assigning the values we typed. 
+For example if to make a slide we write this code : </p>
+
+<pre><code>--- &amp;simple .dark #end bg:grey 
+## Custom Slidify 
+To customize ...  
+---
+</code></pre>
+
+<p>We will tell <code>slidify</code> to assing this values to this slide elements: </p>
+
+<table><thead>
+<tr>
+<th>element</th>
+<th>value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>layout</td>
+<td>simple</td>
+</tr>
+<tr>
+<td>class</td>
+<td>dark</td>
+</tr>
+<tr>
+<td>id</td>
+<td>end</td>
+</tr>
+<tr>
+<td>bg</td>
+<td>grey</td>
+</tr>
+<tr>
+<td>header</td>
+<td>&quot;Custom Slidify&quot;</td>
+</tr>
+<tr>
+<td>content</td>
+<td>&quot;To customize ...&quot;</td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Layouts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Once <code>slidify</code> finds elements and values, it will use those to make a document. 
+To do that, it will need a <em>skeleton template</em> to insert into it the values of the elements found. </p>
+
+<p>Layouts are <code>.html</code> files (found in the &quot;layouts&quot; directory).</p>
+
+<p>Here is an example of a simple layout used for a slide (called <strong>simple.html</strong>): </p>
+
+<p><img src="assets/img/layout-example-code.png" alt="layout"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Layouts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>For the example code for a slide : </p>
+
+<pre><code>--- &amp;simple .dark #end bg:grey
+## Custom Slidify 
+To customize ...  
+---
+</code></pre>
+
+<p><code>slidify</code> will find the elements of the slide and their values, and parse them into the layout 
+(in this case simple.html) generating this html code: </p>
+
+<pre><code>&lt;slide class=&quot;dark&quot; id=&quot;end&quot; style=&quot;background:blue;&quot;&gt;
+&lt;hgroup&gt;
+ Custom slidify 
+&lt;/hgroup&gt;
+ &lt;article&gt;
+  To customize...  
+ &lt;/article&gt;
+&lt;/slide&gt;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Layouts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>What <code>slidify</code> did is to replace { { slide.element } } by the value of that element. </p>
+
+<p>For our example slide : </p>
+
+<pre><code>--- &amp;simple .dark #end bg:grey
+## Custom Slidify 
+To customize ...  
+---
+</code></pre>
+
+<table><thead>
+<tr>
+<th>element</th>
+<th>value</th>
+<th>call in layout</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>class</td>
+<td>dark</td>
+<td>{{ slide.class &#125;&#125;</td>
+</tr>
+<tr>
+<td>id</td>
+<td>end</td>
+<td>{{  slide.id  &#125;&#125;</td>
+</tr>
+<tr>
+<td>bg</td>
+<td>grey</td>
+<td>{{{ slide.bg  &#125;&#125;&#125;</td>
+</tr>
+<tr>
+<td>header</td>
+<td>Custom Slidify</td>
+<td>{{{ slide.header  &#125;&#125;&#125;</td>
+</tr>
+<tr>
+<td>content</td>
+<td>To customize ...</td>
+<td>{{{ slide.content  &#125;&#125;&#125;</td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Layouts</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Another way to type the elements and values is </p>
+
+<pre><code>--- {class: active, id: problem, bg:black }
+</code></pre>
+
+<p>Elements can have sub-elements. To code them we use : </p>
+
+<pre><code>{
+ id: showit
+ menu: 
+ - {item: Home, href: index,  icon: home}
+ - {item: &quot;Start&quot;, href: start, icon: signin}
+}
+</code></pre>
+
+<p>Here we have the element &quot;menu&quot; that have &quot;item&quot; &quot;href&quot; and &quot;icon&quot; as sub-elements. 
+To call them in a layout we will code: </p>
+
+<pre><code>{{ # slide.menu } } 
+{{ item } }  {{ href } } {{ icon } } 
+{{ /slide.menu } }
+</code></pre>
+
+<p>That is, to access sub-elements, we can &quot;open&quot; and &quot;close&quot; with  <code>{{ # } } {{ / } }</code> and inside it, call the sub-elements with <code>{{ } }</code></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>BLOCKS</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>We can define different blocks into the same slide, by typing : </p>
+
+<pre><code>*** =blockname 
+</code></pre>
+
+<p>where <code>blockname</code> is the name of the block. </p>
+
+<p>To call the content of that block in a layout, we will code: </p>
+
+<pre><code>{ { { slide.blockname.html } } }
+</code></pre>
+
+<p>For example, to have a two-column slide, we can write in this way: </p>
+
+<pre><code>--- &amp;twocol 
+## two columns layout 
+
+*** =left 
+
+this is the left one.  
+
+*** =right 
+
+the right one. 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>BLOCKS</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>In the layout &quot;towcol.html&quot; we can code : </p>
+
+<pre><code>---
+layout: slide
+---
+{ { { slide.content } } }
+  &lt;div style=&#39;float:left;width:48%;&#39; class=&#39;centered&#39;&gt;
+{ { { slide.left.html } } }
+&lt;/div&gt;
+&lt;div style=&#39;float:right;width:48%;&#39;&gt;
+{ { { slide.right.html } } }
+&lt;/div&gt;
+</code></pre>
+
+<p>and that will parse the &quot;left&quot; and &quot;right&quot; block into a html code. </p>
+
+<p>adding <code>.html</code> to <code>slide.left</code> is ensuring that the element &quot;left&quot; is parsed as html with header and content (once parsed by markdown and sidify).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>THE DECK LAYOUT</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The default layout for the page (for the document) is <strong>deck.html</strong> or <strong>default.html</strong> 
+Here is an example of it: </p>
+
+<p><img src="assets/img/layout-example-code-default.png" alt="layout"></p>
+
+<p><small> 
+<code>{ {&gt; head }}</code> is making that the file <code>head.html</code> is imported. This file is in the <strong>partials</strong> directory.<br>
+With <code>{ {&gt;  javascript }}</code> and <code>{ {&gt;  titleslide }}</code> we are importing the files &quot;javascript.html&quot; and &quot;titleslide.html&quot; from <strong>partials</strong> directory.<br>
+<code>{ { page.assets.css}}</code> contains the reference list to the css files in the <code>assets/css</code> directory. 
+</small> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>ASSETS</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>Slidify</code> is taking css and layouts from the folder in <code>frameworks/fname</code> . Those are the files that come with the framework used.</p>
+
+<p>If we want to customize layouts, partials, and css, we can put them into <code>assets/layouts</code>, <code>assets/partials</code> , <code>assets/css</code> . </p>
+
+<p><code>assets</code> has priority over the framework files and will override their rules.<br>
+<code>assets</code> directory is also the place to include images, etc. </p>
+
+<p>Calling <code>{ { page.url.assets }}</code> in a layout or partial will give the route to the <code>assets</code> directory.  </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<h2>the toc</h2>
+
+    <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
     <ul>
@@ -330,8 +664,74 @@ In a slidify document (which is an Rmd document) there are 3 main types of code:
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Index'>
+        data-slide=11 title='The main structure'>
          11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='The main structure'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Parsing code'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Layouts'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Layouts'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Layouts'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Layouts'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='BLOCKS'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='BLOCKS'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='THE DECK LAYOUT'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='ASSETS'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='the toc'>
+         22
       </a>
     </li>
   </ul>
